@@ -17,7 +17,7 @@ public:
         for (char ch : s) {
             if (ch == ' ' && word.length()) {
                 st.push(word);
-                word = "";
+                word = ""; 
             } else if (ch != ' ')
                 word += ch;
         }
