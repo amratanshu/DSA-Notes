@@ -1,0 +1,65 @@
+LC LINK - https://leetcode.com/problems/number-of-islands/submissions/
+
+concept - given a grid - find the number of connected components - POCKETS OF "1"
+
+easy - dfs or bfs traverse it and keep marking vis = 1 for that ele. If u now find a new unvisited "1" - means new connected component !
+
+
+class Solution {
+public:
+    void dfs(int i, int j, vector<vector<int>> &vis, vector<vector<char>>& grid) {
+        vis[i][j] = 1;
+        
+        int m = grid.size();
+        int n = grid[0].size();
+
+        //go check and do dfs in all 4 directions (if there is a 1)
+        //i+1, j
+        if (i+1 < m)
+            if (grid[i+1][j] == '1')
+                if (vis[i+1][j] != 1)
+                    dfs(i+1,j, vis, grid);
+            
+        //i-1, j
+        if (i-1 >= 0)
+            if (grid[i-1][j] == '1')
+                if (vis[i-1][j] != 1)
+                    dfs(i-1,j,vis, grid);
+
+        //i, j+1
+        if (j+1 < n)
+            if (grid[i][j+1] == '1')
+                if (vis[i][j+1] != 1)
+                    dfs(i,j+1,vis, grid);
+
+        //i, j-1
+        if (j-1 >=0)
+            if (grid[i][j-1] == '1')
+                if (vis[i][j-1] != 1)
+                    dfs(i,j-1,vis, grid);
+
+        
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int count = 0;
+
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector<vector<int>> vis( m , vector<int> (n, 0)); 
+
+        for (int i=0; i<m; i++) {
+            for (int j=0;j<n;j++) {
+                if (grid[i][j] == '1') {
+                    if (vis[i][j] == 0) {
+                        count ++;
+                        dfs(i, j, vis, grid);
+                    }
+                
+                }
+            }
+        }
+        return count;
+    }
+};
