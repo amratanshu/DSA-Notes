@@ -105,3 +105,93 @@ If it is a 32 bit data type (int) - then mod by 2^31 - because 1 bit is sign bit
 Depends totally on the language and the data type we select
 
 
+IMPLEMENTATION OF RABIN CARP IN C++ ->
+
+Problem - https://leetcode.com/problems/repeated-string-match/
+
+Read the implementation again and again to understand it clearly
+
+Do a dry run
+
+class Solution {
+public:
+    // s1 is the text
+    // s2 is the pattern
+
+    // rolling hash - hash calculation in sliding window form
+    int rabin_karp(string s1, string s2) {
+        long long m = s1.size();
+        long long n = s2.size();
+
+        long long p = 31;
+        long long pow = 1;
+        long long mod = 1e9 + 7;
+        long long targetHashVal = 0;
+
+        // hash value of pattern
+        for (long long i = 0; i < n; i++) {
+            targetHashVal = (targetHashVal + (s2[i] - 'a' + 1) * pow) % mod;
+            pow = (pow * p) % mod;
+        }
+
+        // rabin carp
+        // prefix hash array
+        vector<long long> pha(m);
+
+        // power array - to save time for calculating exponential powers
+        vector<long long> pa(m);
+
+        pha[0] = s1[0] - 'a' + 1;
+        pa[0] = 1;
+        pow = p;
+
+        for (long long i = 1; i < m; i++) {
+            pha[i] = (pha[i - 1] + (s1[i] - 'a' + 1) * pow) % mod;
+            pa[i] = pow;
+            pow = (pow * p) % mod;
+        }
+
+        // Now Start sliding window
+        //  initialize variables for the starting and ending points of window
+        long long sp = 0, ep = n - 1;
+
+        while (ep < m) {
+            long long win = pha[ep];
+            if (sp > 0)
+                win = (win - pha[sp - 1] + mod) %
+                      mod; // agar value negative hoti hai toh usme bas mod add
+                           // kardo
+
+            if (win == (targetHashVal * pa[sp]) % mod) {
+                return 1;
+            }
+            sp++, ep++;
+        }
+        return 0;
+    }
+
+    int repeatedStringMatch(string a, string b) {
+        if (a == b)
+            return 1;
+
+        int count = 1;
+        string source = a;
+
+        while (source.size() < b.size()) {
+            source += a;
+            count++;
+        }
+
+        if (source == b)
+            return count;
+
+        if (rabin_karp(source, b) == 1)
+            return count;
+
+        if (rabin_karp(source + a, b) == 1)
+            return count + 1;
+
+        return -1;
+    }
+}
+;
