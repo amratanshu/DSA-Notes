@@ -1,0 +1,93 @@
+Naive Brute force takes O(M*N)
+
+KMP algorithm preprocesses pat[] and constructs an auxiliary lps[] of size m (same as the size of the pattern)
+which is used to skip characters while matching.
+Name lps indicates the longest proper prefix which is also a suffix. 
+A proper prefix is a prefix with a whole string not allowed. 
+For example, prefixes of “ABC” are “”, “A”, “AB” and “ABC”. Proper prefixes are “”, “A” and “AB”. 
+Suffixes of the string are “”, “C”, “BC”, and “ABC”.
+
+
+Take i - pointer for text string
+Take j - pointer for pattern string
+
+Keep LPS ready  (size of the pattern string)
+
+Start moving i and j - see video to understand more 
+
+Start comparing the main text string and the pattern string 
+
+In case of mismatch - move j to the index = number stored in LPS[i]
+
+If there is no movement for j left (it reached the beginning = 0...) - 
+leave this and increment i and start comparing again
+
+So - we have never moved i backwards. It just loops through the main text string once
+
+//KMP SOLUTION - Refer gfg for more!!!!
+
+https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+
+class Solution {
+public:
+    vector<int> preprocessing(string pat) {
+        int M = pat.length();
+
+        vector<int> lps(M, 0);
+        lps[0] = 0;
+        int i = 1, len = 0;
+        while (i < M) {
+            if (pat[i] == pat[len]) {
+                len++;
+                lps[i] = len;
+                i++;
+            } else // (pat[i] != pat[len])
+            {
+                // This is tricky. Consider the example.
+                // AAACAAAA and i = 7. The idea is similar
+                // to search step.
+                if (len != 0) {
+                    len = lps[len - 1];
+
+                    // Also, note that we do not increment
+                    // i here
+                } else // if (len == 0)
+                {
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
+        return lps;
+    }
+
+    int strStr(string haystack, string needle) {
+        vector<int> lps = preprocessing(needle);
+
+        int n = haystack.length();
+        int m = needle.length();
+
+        int i = 0; // haystack
+        int j = 0; // needle
+
+        while (n - i >= m - j) { // loop runs until too less elements left in the // haystack to find the needle
+            if (needle[j] == haystack[i]) {
+                i++;
+                j++;
+            }
+
+            if (j == m) { // found
+                return i - m;
+            } 
+            else if (i < n && needle[j] != haystack[i]) {
+                //here, we are saving running cost
+                if (j != 0)
+                    j = lps[j - 1];
+                else
+                    i = i + 1;
+            }
+        }
+        return -1;
+        
+    }
+};
