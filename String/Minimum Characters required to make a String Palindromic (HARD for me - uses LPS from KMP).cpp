@@ -1,4 +1,7 @@
-This question is a HARD DP Question as well - check out solution in DP folder
+This question is a HARD DP Question as well - - BUT BUT
+in that ques - we were allowed to insert a new char anywhere !!
+
+check out solution in DP folder
 
 https://www.interviewbit.com/problems/minimum-characters-required-to-make-a-string-palindromic/hints/
 
