@@ -1,3 +1,7 @@
 {
-    "explorer.sortOrder": "modified"
+    "explorer.sortOrder": "modified",
+    "files.associations": {
+        "Vocab G13": "plaintext",
+        "__locale": "cpp"
+    }
 }

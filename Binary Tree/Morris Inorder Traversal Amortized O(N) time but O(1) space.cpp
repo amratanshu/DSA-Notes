@@ -8,6 +8,27 @@ Regular traversal - have O(N) time compelx and O(N) aux space usage
 
 Morris - does not use any auxilliary extra space
 
+
+--------------------------------------------------------------------------------------------------------------------------------
+TIME COMPLEX
+Time complex of Morris - it is Amortized O(N)
+
+The inner while loop - which takes us to the left subtree ka rightmost element -
+this takes time according to how long is that left to right to right to right tree branch
+Sometimes it can have 2 ele
+Somtimes 3 ele..
+For the lower nodes - they will have 0 elemments to their left subtree ka right most..
+
+So together - over all that while loop will take O(N) only (amortized)
+Each instance can be different tho
+
+U can check that by putting a print statement there and debugging
+
+And the main loop - runs through all the nodes - so it takes O(N) as well
+
+So it is near about O(N) + O(N) -- near about O(N) - not exactly
+--------------------------------------------------------------------------------------------------------------------------------
+
 Uses the concept of threaded binary tree
 
 
@@ -48,6 +69,14 @@ else {
         print the curr (because we are done with the left subtree completely now - this is the ROOT step in the traversal)
         move to right subtree - because we are done with LEFT and ROOT)
 }
+
+
+SUM UP
+Self notes:
+In-order Morris Traversal:
+ 1st case: if left is null, print current node and go right
+ 2nd case: before going left, make right most node on left subtree connected to current node, then go left
+ 3rd case: if thread is already pointed to current node, then remove the thread
 
 Do a dry run to understand more and watch strivers video
 

@@ -1,0 +1,54 @@
+Just one line change from morris inorder
+
+Where we print - it is different. thats it.
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        //morris inorder traversal - threaded binary tree - rightmost of left subtree connected to root
+        //no aux space - iterative soln
+
+        TreeNode* curr = root;
+        vector<int> preorder;
+        while(curr) {
+            if (curr->left == NULL) {
+                inorder.push_back(curr->val);
+                curr = curr->right;
+            }
+
+            else {
+                //go to left subtree ka right most
+                TreeNode* temp = curr->left;
+                while(temp->right && temp->right != curr) { //second condition checks whether there is already a thread back to root
+                    temp = temp->right;
+                }
+
+                if (temp->right == curr) { //already a thread, so we want to delete this (dont wanna disturb the og binary tree)
+                    temp->right = NULL;
+                    
+                    curr = curr->right; //left subtree and root are done - just go to right subtree now
+                }
+                else { //create new thread
+                    temp->right = curr;
+                    preorder.push_back(curr->val); //before moving to the left (in the next line), we have printed preorder.
+                    curr = curr->left;
+                }
+            }
+        }
+
+        return preorder;
+    }
+};
+
