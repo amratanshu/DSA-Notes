@@ -22,6 +22,32 @@ Last level pe kitne nodes hote hain total? -- N/2
 
 Hence O(N)
 
+BUT - NON RECURSIVE is better - why?
+because we have to do the logic for vertical height and horizontal both
+
+but iteratively - we can just do level order traversal and get away with the solution
+
+Level Order time complexity - 
+ON
+
+Space - ON - depends on the structure of the tree
+
+Check striver 
+If we want to do it non recursively - maintain a Queue - and cover each vertical line one by one
+https://www.youtube.com/watch?v=0FtVY6I4pB8&ab_channel=takeUforward
+See striver video for the same
+
+first put the root in the queue as {rootVal, 0}
+Then put {rootLeft, -1} and {rootRight, 1}
+
+Then line is done
+
+so - pop.. this will take out {rootVal, 0}
+
+similary do - add to queue -  {q.top()->left, -2} and right also
+then pop.
+
+
 // } Driver Code Ends
 //Function to return a list containing the bottom view of the given tree.
 
