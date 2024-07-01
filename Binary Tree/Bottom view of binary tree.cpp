@@ -37,16 +37,17 @@ If we want to do it non recursively - maintain a Queue - and cover each vertical
 https://www.youtube.com/watch?v=0FtVY6I4pB8&ab_channel=takeUforward
 See striver video for the same
 
-first put the root in the queue as {rootVal, 0}
+first put the root in the queue as {root, 0}
 Then put {rootLeft, -1} and {rootRight, 1}
 
 Then line is done
 
-so - pop.. this will take out {rootVal, 0}
+so - pop.. this will take out {root, 0}
 
 similary do - add to queue -  {q.top()->left, -2} and right also
 then pop.
 
+NOTE - CHECK MY TOP VIEW OF BINARY TREE CODE - implemented iterative Queue solution there.
 
 // } Driver Code Ends
 //Function to return a list containing the bottom view of the given tree.
