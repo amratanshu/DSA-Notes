@@ -26,8 +26,7 @@ public:
     }
 };
 
-
-This below My solution is using iterative (not the best solution!)
+This below solution is using iterative (not the best solution!)
 
 /**
  * Definition for a binary tree node.
