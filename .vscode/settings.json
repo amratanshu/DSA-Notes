@@ -2,6 +2,7 @@
     "explorer.sortOrder": "modified",
     "files.associations": {
         "Vocab G13": "plaintext",
-        "__locale": "cpp"
+        "__locale": "cpp",
+        "__node_handle": "cpp"
     }
 }
