@@ -1,7 +1,25 @@
+https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+
 My code ->
 
 A variable MySwitch decides the pop and push to which side - and also push left or right
 Modification of Level Order Traversal
+
+Time - beats 100%
+
+Concept -
+
+Take a complete binary tree with 3-4 levels to understand
+
+See that - each level ka traversal - uske last element ke children start the next level ka traversal
+
+Also - the left and right ka order keeps switching one by one
+
+So we have used a DEQUEUE to add and pop from boths sides - using a flag called mySwitch
+
+Striver solution is pretty easy one - he is just using the temp and adding elements ulta aur seedha depending upon the flag
+
+No need for a dequeue in this case.
 
 class Solution {
 public:
