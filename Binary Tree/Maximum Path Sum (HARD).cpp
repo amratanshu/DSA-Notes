@@ -91,3 +91,34 @@ public:
 
 Better optimisation ->
 
+Approach - same concept but at every node -
+
+Do maximum calculation with forumla:(node val + leftMax + rightMax) BUT return: nodeVal + max(leftMax, rightMax)
+
+The recursion will look kinda like the code for calcualting max height of the tree
+
+class Solution {
+public:
+    int solve(TreeNode* curr, int &ans) {
+        if (!curr)
+            return 0;
+        //ignore the negative values - because they decrease the sum - so we dont want them
+        int left = max(0, solve(curr->left, ans));
+        int right = max(0, solve(curr->right, ans));
+        ans = max(ans, curr->val + left + right);
+        return curr->val + max(left, right);
+    }
+
+    int maxPathSum(TreeNode* root) {
+        //root cant be null, it is given
+        int ans = INT_MIN;
+        solve(root, ans);
+        return ans;
+    }
+};
+
+
+TIME - O(N) - traversing each node
+Space - O(N)
+
+
