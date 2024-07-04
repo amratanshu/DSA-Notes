@@ -21,8 +21,17 @@ Just do a recursion using this information
 
 It is just a game of indexes now
 
-TIME - O(N)
-SPACE - O(N)
+TIME - O(N) - going through the arrays again and again - searching for the root in inorder
+SPACE - O(N) - auxillary stack space
+
+NOTE - OPTIMISATION -
+In striver solution - one extra thing he did was - HASH all the ele to indexes of the INORDER
+So that - whenever we are finding the root in the inorder array - (repeatedly it happens in all recursive calls)
+- it can be done in O(1) time
+
+With map solution -
+TIME - O(N) - going through the array once and putting it in map?!
+SPACE - O(N) - auxillary stack space + Map space
 
 My solution - 
 
