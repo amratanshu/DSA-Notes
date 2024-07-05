@@ -71,4 +71,8 @@ But still - it can be done iteratively as well -
 1. using a Queue (node, vertical, horizontal level)
 2. Using a map<node, map<node, multiset<node>>> 
 
-why using a multiset?
+why using a multiset? question stated that it can have same values
+
+if u use set - there can be a value 9 at position 0,1 and also at position 1,1 
+
+Check screenshot

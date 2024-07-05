@@ -24,7 +24,7 @@ public:
         vector<int> preorder;
         while(curr) {
             if (curr->left == NULL) {
-                inorder.push_back(curr->val);
+                preorder.push_back(curr->val);
                 curr = curr->right;
             }
 
