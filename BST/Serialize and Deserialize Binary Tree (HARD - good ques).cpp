@@ -22,6 +22,9 @@ basic LO Traversal is easy
 
 but here - the problem is - where will we stop in the queue wala loop (when to put and not put NULLS) ....
 
+To know this - maybe we should find out the Height of the tree first and then do a level order and put
+Nulls in all the empty places
+
 
 Level order will become difficult in this and even the deserialize will be very very hectic !!
 
@@ -30,19 +33,19 @@ Level order will become difficult in this and even the deserialize will be very 
 (Better solution is given below thi ->)
 TEDIOUS BAD SOLUTION ->
 
-My Partial solution code to this problem - 
-
-Issue with this - the serialization is incorrect for trees like ->
+My solved solution for this problem -
 [1,2,3,null,null,4,5,6,7]
-
 The serialized string for this tree is coming out - 1$2$3$N$N$4$5$6$7$N$N$N$N$N$N
 
-This is wrong because - we are missing the first two NULLS in the last level
+Now traverse this string - separate out the sub strings and form the tree using a queue and level order traversal (reverse)
 
-So the serialization method needs to be corrected here!
+ALTHOUGH -
 
+This solution is ACCEPTED but giving Exceeded time limit !
 
+Striver has written almost the same logic but he has used things like getline() in CS to read and break down the string
 
+That is much more optimal 
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -54,40 +57,28 @@ So the serialization method needs to be corrected here!
  */
 class Codec {
 public:
-
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         if (!root)
             return "";
-        
+
         string ans = "";
         queue<TreeNode*> q;
         q.push(root);
-        TreeNode* dummy = new TreeNode(-100000);
-        // int level = 1;
         while (!q.empty()) {
-            int n = q.size();
-            for(int i=0;i<n;i++) {
-                TreeNode* fr = q.front();
-                if (fr != dummy) //this is the dummy node, dont push anything for this node
-                {   if (fr->left) q.push(fr->left);
-                    else q.push(dummy);
-                    if (fr->right) q.push(fr->right);
-                    else q.push(dummy);
-                }
-                if (ans != "")
-                    ans.append("$"); //separator
-                if (fr != dummy) {
-                    ans.append(to_string(fr->val));
-                }
-                else { 
-                    ans.append("N");
-                }
-                q.pop();
+            TreeNode* fr = q.front();
+            q.pop();
+            if (fr == NULL) {
+                ans.append("N$");
             }
-
-            // level = level * 2;
+            else {
+                q.push(fr->left);
+                q.push(fr->right);
+                ans.append(to_string(fr->val) + '$');
+            }
         }
+        //remove the extra $ from behind
+        ans.pop_back();
         return ans;
     }
 
@@ -98,35 +89,46 @@ public:
         int i = 0;
 
         // create the array of strings - ["1", "2", "N"...]
-        cout<<data<<endl;
+        cout << data << endl;
         vector<string> levelOrder;
         levelOrder.push_back("");
-        for (int i=0;i<data.length();i++) {
+        for (int i = 0; i < data.length(); i++) {
             if (data[i] == '$') {
                 levelOrder.push_back("");
-            }
-            else if (data[i] == 'N') {
-                levelOrder[levelOrder.size()-1].append("N");
-            }
-            else {
+            } else if (data[i] == 'N') {
+                levelOrder[levelOrder.size() - 1].append("N");
+            } else {
                 levelOrder[levelOrder.size() - 1] += data[i];
             }
         }
 
-        //lets create the tree using the array now
-        for(int i=0;i<levelOrder.size();i++) {
-            cout<<levelOrder[i]<<endl;
+        // lets create the tree using the array now
+        for (int i = 0; i < levelOrder.size(); i++) {
+            cout << levelOrder[i] << endl;
         }
-        TreeNode* root = populateTree(levelOrder, 0);
+        TreeNode* root = populateTree(levelOrder);
         return root;
     }
 
-    TreeNode* populateTree(vector<string> levelOrder, int i) {
-        if (i > levelOrder.size() - 1) return NULL; //out of bounds
-        if (levelOrder[i] == "N") return NULL;
-        TreeNode* root = new TreeNode(stoi(levelOrder[i]));
-        root->left = populateTree(levelOrder, 2*i + 1);
-        root->right = populateTree(levelOrder, 2*i + 2);
+    TreeNode* populateTree(vector<string> levelOrder) {
+        queue<TreeNode*> q;
+        TreeNode* root = new TreeNode(stoi(levelOrder[0]));
+        q.push(root);
+        int itr = 1;
+        while(!q.empty() && itr < levelOrder.size()) {
+            TreeNode* fr = q.front();
+            q.pop();
+            if (levelOrder[itr] != "N") {
+                fr->left = new TreeNode(stoi(levelOrder[itr]));
+                q.push(fr->left);
+            }
+            itr++;
+            if (levelOrder[itr] != "N") {
+                fr->right = new TreeNode(stoi(levelOrder[itr]));
+                q.push(fr->right);
+            }
+            itr++;
+        }
         return root;
     }
 };
@@ -137,9 +139,13 @@ public:
 
 
 BETTER SOLUTION - using a recursive serialization !
-
 This guy explains nicely !
 https://leetcode.com/problems/serialize-and-deserialize-binary-tree/solutions/608304/c-solution-using-queue-and-preorder-traversal
 
+
+On the other hand - 
+Striver did it exactly like I was doing !
+
+His solution is pasted as a png !
 
 
