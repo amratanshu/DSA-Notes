@@ -40,10 +40,10 @@ The serialized string for this tree is coming out - 1$2$3$N$N$4$5$6$7$N$N$N$N$N$
 Now traverse this string - separate out the sub strings and form the tree using a queue and level order traversal (reverse)
 
 ALTHOUGH -
-
 This solution is ACCEPTED but giving Exceeded time limit !
-
 Striver has written almost the same logic but he has used things like getline() in CS to read and break down the string
+
+Still - his exact solution is also saying this - Exceeded time limit when clicking on the time complexity!
 
 That is much more optimal 
 /**
