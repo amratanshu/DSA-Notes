@@ -60,6 +60,12 @@ and we keep checking the partition index
 If the partition index == k => that means this is the kth largest element - because uske left me saare largest element honge
 (thats how the quick sort partition works)
 
+"However, instead of recursing into both sides as in Quicksort, 
+quickselect only recurs into one side; whichever one would have our kth largest element."
+
+A guide to quick select -> https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/2180600/a-guide-to-quick-select-java
+
+My version of quick select
 class Solution {
 public:
     //this recursive method is just the descending version of quick sort
@@ -89,8 +95,15 @@ public:
             return;
         }
 
-        solve(nums, low, j - 1, k, ans);
-        solve(nums, j + 1, high, k, ans);
+        if (j < k-1) {
+            solve(nums, j + 1, high, k, ans);
+        }
+
+        if (j > k-1) {
+            solve(nums, low, j - 1, k, ans);
+        }
+
+        
     }
     int findKthLargest(vector<int>& nums, int k) {
         // use quick select
@@ -99,3 +112,6 @@ public:
         return ans;
     }
 };
+
+TIME - avg O(N) - varna plain quick sort algo hota toh ye O(NLOGN) hoti
+SPACE - avg O(1) - this is quick sort ka in general benefit - (not counting the aux stack space here of course)
