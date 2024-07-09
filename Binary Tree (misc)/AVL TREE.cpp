@@ -12,7 +12,6 @@ Check what are the 4 types of rotations
 3. RL Rotation - has 2 rotation steps
 4. RR Rotation - single step
 
-
 At most the height of AVL bst -> 1.44 logn
 
 So generally - max time complex - logn
