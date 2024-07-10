@@ -5,7 +5,7 @@ Good question
 Do a BFS or DFS traversal and keep a map of og node to newly created node - this map will also
 help us know who is visited yet
 
-And during the traversal - mark the neighbours too
+And during the traversal - if a copy node for a neighbour has been created - mark the copy neighbours too
 
 Remember - Whoever is put on the queue - consider it visited once!
 
