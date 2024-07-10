@@ -2,7 +2,7 @@ Directed graph detect cycle using BFS
 
 CONCEPT:
 
-This is done using Kahn's algorithm - Topological graph
+This is done using Kahns algorithm - Topological graph
 
 1. Find the indegrees for all the nodes
 2. start with the queue and keep the nodes with 0 indegree
@@ -15,4 +15,6 @@ this happens because during topo sort - the queue becomes empty pehle hi
 
 ANSWER =
 
-- JUST CALL TOPO SORT - if topo.size() < V return true; else return false;
+- JUST CALL TOPO SORT - 
+
+if topo.size() < V return true; else return false; !!!

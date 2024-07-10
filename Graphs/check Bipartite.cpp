@@ -55,3 +55,46 @@ public:
         return true;
     }
 };
+
+
+My Solution using BFS ->
+
+class Solution {
+public:
+    bool bfs(int node, vector<vector<int>>& graph, vector<int>& vis, vector<bool> &color) {
+        queue<int> q;
+        vis[node] = 1;
+        q.push(node);
+        while (!q.empty()) {
+            int fr = q.front();
+            q.pop();
+
+            for (auto adjNode : graph[fr]) {
+                if (!vis[adjNode]) {
+                    vis[adjNode] = 1;
+                    q.push(adjNode);
+                    color[adjNode] = !color[fr];
+                } else {
+                    if (color[adjNode] == color[fr])
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size(); // no of nodes
+        int m = graph[0].size();
+        vector<int> vis(n, 0);
+        vector<bool> color(n, false);
+        for (int i=0;i<n;i++) {
+            if (vis[i] == 0 && !graph[i].empty()) {
+                if (!bfs(i, graph, vis, color))
+                    return false;
+            }
+        }
+
+        return true;
+    }
+};
+

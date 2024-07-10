@@ -8,6 +8,13 @@ But see how you are defining your edges in the graph (is it from Pre req to cour
 
 This will define whether u want reverse of path or the path 
 
+In my solution ->
+//graph edge - PREREQ COURSE --> COURSE (not the other way round!)
+
+This uses DFS topological sort only!!
+
+Can even be done using BFS topological
+
 Here - 
 class Solution {
 public:
