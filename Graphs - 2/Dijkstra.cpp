@@ -103,3 +103,27 @@ public:
 
 NOTE ->
 
+This algo cannot work when -
+
+1. if any of the graph have a single negative weight
+2. if there is a cycle which has a negative weight
+
+Why? 
+
+
+If there is an edge like
+-1 is the weight
+
+0 ---- -1 -----> 2
+
+This will run into a forever loop in the bfs and it will keep pushing
+
+-2 -4 ......and it will never end
+
+INT_MIN tak chala jayega
+
+TIME COMPLEX OF DIJSKTRA ->
+
+O( E Log V) 
+
+Derivation of this is in the next striver video
