@@ -1,4 +1,4 @@
-
+------------------------------------------------------------------------------------------------------------------------
 Why did we take PQ in the dijkstra? 
 Because we needed the smallest
 
@@ -25,5 +25,11 @@ But Set is better because ->
 1. because it stores unique
 2. because it also set stores everything in ascending way
 3. Most importantly, We can erase in set but not in PQ
+
+------------------------------------------------------------------------------------------------------------------------
+
+Why a PQ or a set ?
+Because queue can also gives us an answer
+It is bfs only end of the day
 
 

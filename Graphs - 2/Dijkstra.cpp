@@ -127,3 +127,9 @@ TIME COMPLEX OF DIJSKTRA ->
 O( E Log V) 
 
 Derivation of this is in the next striver video
+
+Time Complexity: O( E log(V) ) 
+{ for Dijkstra’s Algorithm } + O(V) { for backtracking in order to find the parent for each node } Where E = Number of edges and V = Number of Nodes.
+
+Space Complexity: O( |E| + |V| ) 
+{ for priority queue and dist array } + O( |V| ) { for storing the final path } Where E = Number of edges and V = Number of Nodes.
