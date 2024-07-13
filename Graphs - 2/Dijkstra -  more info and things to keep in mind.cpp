@@ -110,3 +110,13 @@ FINAL TIME COMPLEX ->>
 ------------------------------------------------------------------------------------------------------------------------
 
 How to print the shortest path?
+
+Keep a parent array - basically tracking the node where we came from !!
+
+Everytime you find a minimum distance for a node - update its parent node also
+
+And then in the end - we can backtrack
+
+path ans will be 
+
+finalNode ka parent ka parent ka parent ka parent..
