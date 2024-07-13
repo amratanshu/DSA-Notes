@@ -32,4 +32,76 @@ Why a PQ or a set ?
 Because queue can also gives us an answer
 It is bfs only end of the day
 
+queue takes a lot more time complexity because
+we have wasteful occurences of 8, 5 even when 3,5 is present in the queue
 
+we just need the min wala everytime - GREEDY !
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+How to calculate time complexity of this algo - PQ solution ->
+
+pseudo code ->
+
+while(!pq.empty) {
+    dist, node = top
+
+    for (iterate over adj nodes)
+        if (condition)
+            push
+
+}
+
+The outer loop - will go through all the nodes - which is V - it will kinda go 2 or 3 times - but O(V) only
+
+Finding the top takes LOG(heap size) time
+inner for loop - O(number of edges of every node) - O(NE)
+
+In the densest graph - 
+where everyone is connected to all other
+
+so every node - has n-1 edges (or V-1 basically)
+
+The push to PQ inside this - O(Log(heap size))
+
+---> 
+
+So - overall time complexity->
+
+V * (log (heap size) + NE * log(heap size))
+
+V* (log (Heapsize) (1 + NE))
+
+---- NE is V-1
+
+so ->
+
+V * (log(heapsize) (V))
+
+V^2 log (heapsize)
+
+------what is heap size? in the worst case - 
+if 4 nodes - all connected to each other
+worst case, for each node - it will pop and check all neighbours - and push all the 3
+
+So in this way - V^2 .... is the heapsize generally
+
+
+SO final -->
+
+V^2 log (V^2)
+V^2 * 2log(V)
+
+BUT -> if the graph is very dense (again worst case) 
+what will be the number of edges?
+
+Every node has v-1 edges
+
+so total no of edges will also be V^2 complexity -- V * V-1
+
+
+Hence ->
+
+FINAL TIME COMPLEX ->>
+2 * E * log(V)
