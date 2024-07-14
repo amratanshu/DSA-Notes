@@ -69,7 +69,6 @@ public:
                 {
                     dist[adjNode] = dis + edW;
                     pq.push({dis + edW, adjNode});
-
                     // Update the parent of the adjNode to the recent 
                     // node where it came from.
                     parent[adjNode] = node;
