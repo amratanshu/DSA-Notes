@@ -7,3 +7,5 @@ Points to node -
 2. see that we dont always have to travel till we hit a wall. If we hit the hole first - then the ball will
 be pocketed and stay there!
 
+Couldnt solve it yet !
+
