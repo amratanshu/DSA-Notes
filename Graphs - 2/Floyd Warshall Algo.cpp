@@ -4,3 +4,18 @@ This is a multi-source shortest path algo (unlike bellman ford and dijkstra whic
 
 This can also handle negative cycles!
 
+This is good for finding shortest path between every node basically.
+
+N^3 loop
+
+Create an adjacency matrix
+
+For all the cells in the matrix (yes, for all the cells! not just those which have nodes)
+    cell is [i][j]
+    do something to check if you can go from i to j via nodeX (nodeX is all nodes one by one)
+    what is this "something"? just see if the distance is less than the previous one. 
+    and eventually you will have the shortest cost
+
+It is kind of like a brute force algo. And not very intuitive also.
+Dont worry
+
