@@ -10,6 +10,8 @@ N^3 loop
 
 Create an adjacency matrix
 
+initialize the leading diagonal as all 0s
+
 For all the cells in the matrix (yes, for all the cells! not just those which have nodes)
     cell is [i][j]
     do something to check if you can go from i to j via nodeX (nodeX is all nodes one by one)
@@ -18,4 +20,40 @@ For all the cells in the matrix (yes, for all the cells! not just those which ha
 
 It is kind of like a brute force algo. And not very intuitive also.
 Dont worry
+
+We have to go "Via" for all nodes
+
+so ->
+
+for (via = 1 to n) {
+    for (i = 1 to n) {
+        for (j = 1 to n)
+            if (i to j VIA via) < cell[i][j]
+                update values
+    }
+}
+
+What is i to j VIA via ??
+
+basically -
+i to j VIA via = cell[i][via] + cell[via][j]
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+How to detect a cycle?
+
+Intuition - 
+
+The cost of going from one node to the same node == should be 0 !!
+
+basically via[0][0] = 0 hona chahie - because we are already at the same node
+
+but in the end - if there is a negative cycle - floyd warshall will find another path which is of negative cost
+
+
+So basically if any cell[i][i] = negative == this means this graph has a negative cycle
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+C++ Code->
 
