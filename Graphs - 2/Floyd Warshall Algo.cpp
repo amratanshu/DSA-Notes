@@ -57,3 +57,26 @@ So basically if any cell[i][i] = negative == this means this graph has a negativ
 
 C++ Code->
 
+is in the screenshot.
+
+
+Time complex ->
+
+O(N^3)
+
+SPACE ->
+
+O(N^2) - we are using the space, even if it is given as an input - still we are usign n^2 space
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WHat if we use DIJKSTRA to find shortest path for all the nodes?
+
+
+We can use it only if there are not negative cycles
+
+If no negative cycles - then doing dijkstra on every node - is actually better than N^2 time
+
+1 dijkstra = E log V
+
+for all V nodes -> V E Log V ---> better than N^3
