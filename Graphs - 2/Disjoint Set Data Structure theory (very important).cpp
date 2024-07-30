@@ -72,6 +72,15 @@ Basically - we are erasing their internal parent relationships at all because we
 By doing this - findParent() for any node - runs in constant time almost
 
 ------------------------------------------------------------------------------------------------------------
+Time -
+
+O(4 alpha) 
+
+Alpha has a tedious derivation - but it is very close to 1.
+
+So this is almost O(4) == constant time
+------------------------------------------------------------------------------------------------------------
+UnionByRank and UnionBySize - both methods are present ->
 
 CODE ->
 
