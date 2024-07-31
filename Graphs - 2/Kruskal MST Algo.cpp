@@ -91,7 +91,7 @@ public:
                 edges.push_back({wt, {node, adjNode}});
             }
         }
-        DisjointSet ds(V);
+        
         sort(edges.begin(), edges.end());
         int mstWt = 0;
         for (auto it : edges) {
