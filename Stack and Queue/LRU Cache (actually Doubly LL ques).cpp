@@ -78,7 +78,7 @@ public:
             deleteNode(res);
         }
 
-        if (m.size() == cap) { //delete the node previous to tail
+        if (m.size() == cap) { //if the cache is full - delete the node previous to tail
             m.erase(tail->prev->key);
             deleteNode(tail->prev);
         }
