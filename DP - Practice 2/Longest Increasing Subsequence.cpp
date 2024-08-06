@@ -1,6 +1,12 @@
 https://leetcode.com/problems/longest-increasing-subsequence/description/
 
-Striver solution ->
+
+NOTE: The DP solution for LIS is not the most optimal one - it is O(N^2) and cant be used
+in a lot of tests
+
+LIS can be done using Binary search!! optimally ! check the binary search folder - https://www.youtube.com/watch?v=on2hvxBXJH4&t=52s
+
+Striver DP solution ->
 
 #include <bits/stdc++.h>
 using namespace std;
