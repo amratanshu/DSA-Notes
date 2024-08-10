@@ -36,24 +36,6 @@ Converting this same recursion to DP ->
 
 class Solution {
 public:
-    int f(string &a, string &b, int i, int j, vector<vector<int>> &dp) {
-        if (i == 0) return dp[i][j] = j + 1;
-        if (j == 0) return dp[i][j] = i + 1;
-        
-        if (a[i] == b[j]) {
-            return dp[i][j] = f(a, b, i-1, j-1, dp);
-        }
-        else {
-            //replace
-            int replace = 1 + f(a, b, i-1, j-1, dp);
-
-            //delete and insert
-            int delete1 = 1 + f(a, b, i-1, j, dp);
-            int delete2 = 1 + f(a, b, i, j-1, dp);
-            
-            return dp[i][j] = min(replace, min(delete1, delete2));
-        }
-    }
     int minDistance(string word1, string word2) {
         int n = word1.length();
         int m = word2.length();
@@ -81,8 +63,6 @@ public:
         return dp[n][m];
     }
 };
-
-
 
 Converting to 1 Dimensional DP ->
 
