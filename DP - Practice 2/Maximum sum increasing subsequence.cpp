@@ -34,7 +34,7 @@ class Solution{
 
 
 Dp solution ->
-Have done shifting of index.
+Have done shifting of index - for prev index - watch it very carefully!.
 
 public:
     int maxSumIS(int arr[], int n) {
