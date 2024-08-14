@@ -34,8 +34,9 @@ class Solution{
 
 
 Dp solution ->
+Have done shifting of index.
 
-ublic:
+public:
     int maxSumIS(int arr[], int n) {
         // DP table to store results of subproblems
         vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
