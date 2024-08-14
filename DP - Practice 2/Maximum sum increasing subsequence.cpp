@@ -33,3 +33,32 @@ class Solution{
 };
 
 
+Dp solution ->
+
+ublic:
+    int maxSumIS(int arr[], int n) {
+        // DP table to store results of subproblems
+        vector<vector<int>> dp(n+1, vector<int>(n+1, 0));
+
+        // Fill the DP table in bottom-up manner
+        for (int ind = n; ind >= 0; ind--) {
+            for (int prev = ind; prev >= 0; prev--) {
+                if (ind == n) continue;
+                
+                // Not take case
+                int sum = dp[ind+1][prev];
+
+                // Take case
+                // Adjusted prev indexing: prev-1 corresponds to the correct element in arr
+                if (prev == 0 || arr[prev-1] < arr[ind]) {
+                    sum = max(sum, arr[ind] + dp[ind+1][ind+1]);
+                }
+
+                // Correct the dp table indexing
+                dp[ind][prev] = sum;
+            }
+        }
+
+        return dp[0][0];  // Return dp[1][0] as it corresponds to the correct calculation
+    }
+
