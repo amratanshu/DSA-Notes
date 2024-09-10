@@ -41,3 +41,30 @@ index.
 
 Dynamic programming solution for this problem ->
 
+Without the optimisation of saving only the last used row -->
+
+    int maximumPoints(vector<vector<int>>& arr, int n) {
+        int dp[n][3];
+        
+        for (int i=0;i<3;i++) {
+            dp[0][i] = arr[0][i];
+        }
+        
+        for (int i=1; i<n;i++) {
+            for (int j=0; j<3; j++) {
+                //this j activity is done on the last day
+                int maxi = 0;
+                for (int k=0;k<3;k++) {
+                    if (k != j) {
+                        maxi = max(maxi, arr[i][j] + dp[i-1][k]);
+                    }
+                }
+                dp[i][j] = maxi;
+            }
+        }
+        
+        int a = dp[n-1][0];
+        int b = dp[n-1][1];
+        int c = dp[n-1][2];
+        return max(a, max(b, c));
+    }
