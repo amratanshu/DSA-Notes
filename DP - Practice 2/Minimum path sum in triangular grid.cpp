@@ -5,6 +5,7 @@ Easy - no brainer only.
 Optimised for space complexity - we're just using one vector and just creating a copy of it to look back 
 because only the previous level matters.
 
+
 class Solution {
 public:
     int minimumTotal(vector<vector<int>>& triangle) {
