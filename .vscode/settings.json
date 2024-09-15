@@ -5,6 +5,7 @@
         "__locale": "cpp",
         "__node_handle": "cpp",
         "vector": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "variant": "cpp"
     }
 }

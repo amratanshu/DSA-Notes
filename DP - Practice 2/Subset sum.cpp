@@ -1,7 +1,8 @@
 https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/
 
 Recursive / Recurrence relation solution ->
-
+---------------------------------------------------------------------------------
+WRONG WRONG WRONG
 public:
     bool recur(int ind, int sum, vector<int> &arr, int n) {
         if (ind == n) return false;
@@ -14,6 +15,9 @@ public:
         return recur(0, sum, arr, arr.size());
     }
 }
+WRONG WRONG WRONG
+---------------------------------------------------------------------------------
+The above recurrence solution is also slightly wrong.
 
 WATCH STRIVER SOLUTION IN HIS VIDEO - better explanation and better use of indexes and bounds for understanding..
 Dp solution -
