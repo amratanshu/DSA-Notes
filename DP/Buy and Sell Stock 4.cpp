@@ -23,3 +23,42 @@ public:
         return after[1][K];
     }
 };
+
+Also - if we take index and buy sell buy sell .... till 2*K (2D DP SOLUTION ONLY)
+
+then soln - 
+
+slightly better time complexity.
+
+class Solution {
+public:
+    int maxProfit(int k, vector<int>& prices) {
+        int n = prices.size();
+
+        //denote 2 transactions using Buy Sell Buy Sell - 0 1 2 3 indexes. (buy variable)
+        int dp[n+1][2*k];
+        for(int i=0;i<2*k;i++) {
+            dp[n][i] = 0; //base case
+        }
+
+        for (int i=n-1; i>=0; i--) {
+            for (int buy=0; buy<2*k; buy++) {
+                int profit = 0;
+                if (buy % 2 == 0) { //buy
+                    int take = -prices[i] + dp[i+1][buy+1];
+                    int nottake = 0 + dp[i+1][buy];
+                    profit = max (take, nottake);
+                }
+                else { //sell
+                    int take = 0 + prices[i];
+                    if (buy + 1 < 2*k)
+                        take = prices[i] + dp[i+1][buy+1];
+                    int nottake = 0 + dp[i+1][buy];
+                    profit = max(take, nottake);
+                }
+                dp[i][buy] = profit;
+            }
+        }
+        return dp[0][0];
+    }
+};

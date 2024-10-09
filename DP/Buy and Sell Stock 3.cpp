@@ -99,3 +99,38 @@ If odd: means Sell
 We can add one whenever we do an operation number.
 
 Slight change only. DIY.
+
+DIY == solution
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+
+        //denote 2 transactions using Buy Sell Buy Sell - 0 1 2 3 indexes. (buy variable)
+        int dp[n+1][4];
+        for(int i=0;i<4;i++) {
+            dp[n][i] = 0; //base case
+        }
+
+        for (int i=n-1; i>=0; i--) {
+            for (int buy=0; buy<=3; buy++) {
+                int profit = 0;
+                if (buy % 2 ==0) { //buy
+                    int take = -prices[i] + dp[i+1][buy+1];
+                    int nottake = 0 + dp[i+1][buy];
+                    profit = max (take, nottake);
+                }
+                else { //sell
+                    int take = 0 + prices[i];
+                    if (buy + 1 < 4)
+                        take = prices[i] + dp[i+1][buy+1];
+                    int nottake = 0 + dp[i+1][buy];
+                    profit = max(take, nottake);
+                }
+                dp[i][buy] = profit;
+            }
+        }
+        return dp[0][0];
+    }
+};

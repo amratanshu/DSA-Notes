@@ -2,8 +2,6 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
 How to form recurrence relation:
 
-
-
 f(i, canBuy) {
     if (canBuy) {
         buy = -prices[i] + f(i+1, 0) //bought at ith, move on to the next, but we can not buy again now.
