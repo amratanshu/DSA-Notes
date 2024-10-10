@@ -19,6 +19,8 @@ to calculate the LIS from right
 
 Find a point where length of LIS is max from left and right
 
+This solution is good if the grader can accept strictly increasing or decreasing susbequences as well !
+
 int longestBitonicSubsequence(vector<int>& arr, int n) {	
 	vector<int>dp1(n, 1), dp2(n, 1);
 	// find LIS from left
@@ -44,6 +46,62 @@ int longestBitonicSubsequence(vector<int>& arr, int n) {
     for(int i=0; i<n; i++){
         maxi = max(maxi, (dp1[i] + dp2[i] - 1));
     }
-    return maxi;
-	
+    return maxi;	
 }
+
+This solution is giving wrong on GFG - because of test cases like ->
+
+ARR - 5 7 9
+
+Our code output - 3
+Correct output - 0
+
+Why is this issue arising?? -
+
+because we are also considering the max from cases where dp1[] or dp2[] = 1
+
+if one of either dp arrays is 1 - opposite wala LIS combine karke bhi we'll form a strictly increasing subsequence
+
+Hence - check for this
+
+Do a dry run for 5 7 9 and you will understand
+
+So - to resolve this - just add the condition ->
+
+for(int i=0; i<n; i++){
+            if (dp1[i] != 1 && dp2[i] != 1)
+                maxi = max(maxi, (dp1[i] + dp2[i] - 1));
+        }
+        return maxi;
+
+FINAL SOLUTION ->
+
+int LongestBitonicSequence(int n, vector<int> &arr) {
+        vector<int>dp1(n, 1), dp2(n, 1);
+    	// find LIS from left
+        for(int i=0; i<n; i++){
+            for(int j=0; j<i; j++){
+                if(arr[i] > arr[j] && dp1[i] < dp1[j] + 1){
+                    dp1[i] = dp1[j] + 1;
+                }
+            }
+        }   
+    
+    	// find LIS from right
+        for(int i=n-1; i>=0; i--){
+            for(int j=n-1; j>i; j--){
+                if(arr[i] > arr[j] && dp2[i] < dp2[j] + 1){
+                    dp2[i] = dp2[j] + 1;
+                }
+            }
+        }   
+    	
+        // find a point from where length of LIS is max from left and right
+        int maxi = 0;
+        
+        for(int i=0; i<n; i++){
+            if (dp1[i] != 1 && dp2[i] != 1)
+                maxi = max(maxi, (dp1[i] + dp2[i] - 1));
+        }
+        return maxi;
+    }
