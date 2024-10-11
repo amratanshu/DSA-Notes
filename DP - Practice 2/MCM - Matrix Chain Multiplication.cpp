@@ -52,12 +52,18 @@ Recurrence Relation solution ->
 
 Gives TLE of course ->
 
+The TC for this solution is - Exponential..
+
 int solve(int i, int j, int arr[]) {
         if (i == j) return 0;
         
-        if (i + 1 == j) { //only one way to multiply these guys so lets do this
-            return arr[i-1] * arr[i] * arr[j];
-        }
+        // the below condition is not reqd - it will be solved within the partition calculations. but u can still have it
+        //no harm
+
+        // if (i + 1 == j) { //only one way to multiply these guys so lets do this
+        //     return arr[i-1] * arr[i] * arr[j];
+        // }
+
         //make a partition at k - (i, k) and (k+1, j) - so k goes from i to j-1
         int mini = INT_MAX;
         for(int k=i; k<=j-1; k++) {
@@ -76,3 +82,68 @@ int solve(int i, int j, int arr[]) {
     {
         return solve(1, N-1, arr);
     }
+
+
+Memoizing this solution ->
+
+    int solve(int i, int j, int arr[], vector<vector<int>>& dp) {
+        if (i == j) return dp[i][j] = 0;
+        
+        // if (i + 1 == j) { //only one way to multiply these guys so lets do this
+        //     return dp[i][j] = arr[i-1] * arr[i] * arr[j];
+        // }
+        
+        if (dp[i][j] != -1) return dp[i][j];
+        
+        //make a partition at k - (i, k) and (k+1, j) - so k goes from i to j-1
+        int mini = INT_MAX;
+        for(int k=i; k<=j-1; k++) {
+            //first the two partitions get solved 
+            int partition1 = solve(i, k, arr, dp);
+            int partition2 = solve(k+1, j, arr, dp);
+            
+            //now multiplying these partitions will also require some operations
+            int multiplyPartitions = arr[i-1] * arr[k] * arr[j];
+            mini = min(mini, partition1 + partition2 + multiplyPartitions);
+        }
+        return dp[i][j] = mini;
+    }
+    
+    int matrixMultiplication(int N, int arr[])
+    {
+        vector<vector<int>> dp(N, vector<int>(N, -1));
+        return solve(1, N-1, arr, dp);
+    }
+
+Easy memoization!
+
+We can also do Tabulation for this to save more space ->
+
+TABULATION ->
+
+Focus on how the j goes. Dont just directly reverse the j here .
+
+int matrixMultiplication(int N, int arr[])
+{
+    vector<vector<int>> dp(N, vector<int>(N, -1));
+    // return solve(1, N-1, arr, dp);
+    
+    //base case
+    for (int i=0;i<N;i++) {
+            dp[i][i] = 0;
+    }
+    
+    for (int i=N-1; i>=1; i--) {
+        for (int j=i+1; j<N; j++) { //start from the right of i. dont just directly reverse the order for tabulation
+            int mini = INT_MAX;
+            for (int k=i; k<j; k++) {
+                int steps = arr[i-1] * arr[k] * arr[j] + dp[i][k] + dp[k+1][j];
+                mini = min (steps, mini);
+            }
+            dp[i][j] = mini;
+        }
+        
+    }
+    return dp[1][N-1];
+}
+
