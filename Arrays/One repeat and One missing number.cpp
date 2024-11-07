@@ -48,3 +48,30 @@ METHOD 2 ->
 XOR SOLUTION - see striver video
 https://www.youtube.com/watch?v=2D0D8HE6uak&ab_channel=takeUforward
 
+Method 3 ->
+Linked List detect cyclic point ->
+
+int findDuplicate(vector<int>& nums) {
+        
+        //striver linked list approach
+
+        int slow = nums[0];
+        int fast = nums[0];
+
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        //now we are at the cyclic point.
+
+        //Reassign one pointer to head
+        slow = nums[0];
+
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow;
+    }
