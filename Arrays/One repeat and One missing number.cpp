@@ -48,6 +48,9 @@ METHOD 2 ->
 XOR SOLUTION - see striver video
 https://www.youtube.com/watch?v=2D0D8HE6uak&ab_channel=takeUforward
 
+XOR concept - if we XOR the same number even number of times - gives 0
+if we XOR the same number odd number of times - gives the original number itself
+
 Method 3 ->
 Linked List detect cyclic point ->
 
