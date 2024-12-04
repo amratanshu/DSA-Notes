@@ -17,6 +17,8 @@ The DFS is kind of doing the sum of all weights by going through all the nodes i
 
 See this for explanation - https://www.youtube.com/watch?v=ol9-DkDnOBk&ab_channel=AmitChoraria
 
+Understand how the sorting is taking place! that is the most imp part.
+
 CACHE IS NOTHING BUT THE DP ARRAY
 
 class Solution {
