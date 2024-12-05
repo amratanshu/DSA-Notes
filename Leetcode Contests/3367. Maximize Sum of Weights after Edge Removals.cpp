@@ -1,5 +1,6 @@
 3367. Maximize Sum of Weights after Edge Removals
 
+COULD NOT SOLVE MYSELF.
 
 Why not greedy?
 see example in the beginning of this video to understand why greedy (just selecting min edge of violating nodes) does
