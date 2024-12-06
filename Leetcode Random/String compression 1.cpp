@@ -2,7 +2,7 @@ https://leetcode.com/problems/string-compression/
 
 My solution ->
 
-Basic pointer question - but writing the loop was a bit confusing.
+Basic pointer question - but writing the loop was confusing.
 
 class Solution {
 public:
