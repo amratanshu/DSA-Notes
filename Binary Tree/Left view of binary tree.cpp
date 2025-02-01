@@ -57,3 +57,45 @@ return vector
 TIME - O(N)
 SPACE - O(H)
 
+
+
+My solution with level order traversal ->
+
+RIGHT SIDE VIEW ->
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        if (!root) return ans; 
+        queue<TreeNode*> q;
+
+        q.push(root);
+        while(!q.empty()) {
+            int qsize = q.size();
+            
+            ans.push_back(q.front()->val);
+            for(int i=0; i<qsize; i++) {
+                TreeNode* fr = q.front();
+                q.pop();
+
+                if (fr->right)
+                    q.push(fr->right);
+                if (fr->left)
+                    q.push(fr->left);
+            }
+        }
+        return ans;
+    }
+};
