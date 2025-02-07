@@ -67,3 +67,18 @@ public:
         return ans;
     }
 };
+
+
+We can simply do this as well->
+if we are not swapping - then just manually reverse the order of pushing left right to right left
+
+// if (!mySwitch) swap(left, right);
+                if (mySwitch) {
+                    if (left) q.push_back(left);
+                    if (right) q.push_back(right);
+                }
+                else {
+                    if (right) q.push_front(right);
+                    if (left) q.push_front(left);
+                }
+

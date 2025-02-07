@@ -75,3 +75,20 @@ public:
         return find(root, p, q);
     }
 };
+
+Simplified code ->
+
+Node* findLCA(Node* root, Node* p, Node* q) {
+    if (root == nullptr || root == p || root == q) {
+        return root; // If root is null or matches one of the nodes, return root
+    }
+
+    Node* leftLCA = findLCA(root->left, p, q);
+    Node* rightLCA = findLCA(root->right, p, q);
+
+    if (leftLCA && rightLCA) {
+        return root; // If p and q are found in left and right subtrees, root is LCA
+    }
+
+    return leftLCA ? leftLCA : rightLCA; // Otherwise, return the non-null result
+}

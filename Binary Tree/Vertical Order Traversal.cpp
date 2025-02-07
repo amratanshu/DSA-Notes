@@ -2,7 +2,10 @@ https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/descript
 
 My code below
 recursive solution - uses simple concept of column and row (horizontal and vertical levels)
-time - 
+
+time - O(NLogN) - How? -> recursive traversal O(N) + insertion into map O(1)* N + sorting each col (worst case 
+all nodes are in the same vertical column - O(NLogN))
+
 space - O(N)
 
 Striver solution below this ->

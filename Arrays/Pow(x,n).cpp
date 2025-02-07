@@ -49,3 +49,26 @@ public:
         return ans;
     }
 };
+
+
+Solution handling all overflows ->
+
+class Solution {
+public:
+    double myPow(double x, long long n) {
+        if (n == 0) return 1;
+        
+        long long exp = abs(n);
+        double result = 1.0;
+
+        while (exp > 0) {
+            if (exp % 2 == 1) {  // If exponent is odd
+                result *= x;
+            }
+            x *= x;  // Square the base
+            exp /= 2;  // Reduce exponent by half
+        }
+
+        return (n < 0) ? 1.0 / result : result;
+    }
+};
