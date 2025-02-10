@@ -1,4 +1,5 @@
-The idea is that for a number to be median there should be exactly (n/2) numbers that are less than this number. So, we try to find the count of numbers less than the selected number. We select the number by using binary search.
+The idea is that for a number to be median there should be exactly (n/2) numbers that are less than this number. 
+So, we try to find the count of numbers less than the selected number. We select the number by using binary search.
 
 Implementation
 Step 1: find the minimum and maximum present in the matrix, which will be used as range of binary search.

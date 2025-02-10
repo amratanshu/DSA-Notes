@@ -8,6 +8,11 @@ LIS can be done using Binary search!! optimally ! check the binary search folder
 
 Striver DP solution ->
 
+getAns - It tries to find the LIS starting from index ind, considering that the last selected element was at prev_index.
+It does not return the LIS up to index ind but rather finds the LIS that starts at or after ind 
+while maintaining the increasing order.
+
+
 #include <bits/stdc++.h>
 using namespace std;
 

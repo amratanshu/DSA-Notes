@@ -41,3 +41,21 @@ public:
     
     }
 };
+
+Alter Approach ->
+
+int minimumTotal(vector<vector<int>>& triangle) {
+    int n = triangle.size();
+    
+    // Start from second-last row and move up
+    for (int i = n - 2
+    ; i >= 0; i--) {
+        for (int j = 0; j < triangle[i].size(); j++) {
+            // Update current cell with min sum path from below row
+            triangle[i][j] += min(triangle[i + 1][j], triangle[i + 1][j + 1]);
+        }
+    }
+    
+    // The minimum path sum is stored at the top of the triangle
+    return triangle[0][0];
+}

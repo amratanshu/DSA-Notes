@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=Du881K7Jtk8&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx
 Overall - the while loop will execute by N times.
 
 It wont be N every time 
-
+  
 Hence O (n + n) is the general complexity
 
 In this ques - we just had to check the next greater element to the right side
