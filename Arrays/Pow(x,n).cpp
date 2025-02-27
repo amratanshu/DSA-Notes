@@ -72,3 +72,31 @@ public:
         return (n < 0) ? 1.0 / result : result;
     }
 };
+
+
+Code which passes on Leetcode ->
+
+class Solution {
+public:
+    double myPow(double x, long long n) { // Change int to long long to prevent overflow
+        if (n == 0)
+            return 1;
+
+        if (n < 0) {
+            x = 1 / x;
+            n = -n;  // Convert to positive
+        }
+
+        double ans = 1.0;
+        while (n > 0) {
+            if (n % 2 == 1) {  // If odd
+                ans *= x;
+                n -= 1;
+            }
+            x *= x;
+            n /= 2;
+        }
+
+        return ans;
+    }
+};
