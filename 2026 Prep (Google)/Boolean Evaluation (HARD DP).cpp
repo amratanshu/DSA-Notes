@@ -3,6 +3,8 @@ here we are not given with parenthesis and have to find the number of ways the e
 
 Recursive Solution
 
+This is also similar to Partition DP - just partition at the operators & | XOR
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -54,4 +56,52 @@ int solve(int i, int j, bool wantTrue, string &exp) {
 
 int evaluateExp(string & exp) {
     return solve(0, exp.length()-1, true, exp);
+}
+
+
+This can easily be memoized. But we can further reduce the number of calls for this.
+
+Here - we are calculation on the basis on wantTrue - and it internally calculates for the no of expressions returning 
+false as well. If we return both of them as a pair in one go - that will reduce the number of calls.
+
+
+SOlution ->
+
+
+
+struct Ways {
+    long long T;
+    long long F;
+};
+
+Ways solve(int i, int j, string &exp) {
+    if (i > j) return {0, 0};
+    if (i == j) {
+        if (exp[i] == 'T') return {1, 0};
+        else return {0, 1};
+    }
+
+    Ways ans = {0, 0};
+
+    for (int k = i + 1; k <= j - 1; k += 2) {
+        Ways left = solve(i, k - 1, exp);
+        Ways right = solve(k + 1, j, exp);
+
+        long long lT = left.T % mod, lF = left.F % mod;
+        long long rT = right.T % mod, rF = right.F % mod;
+
+        if (exp[k] == '&') {
+            ans.T = (ans.T + (lT * rT)) % mod;
+            ans.F = (ans.F + (lT * rF) + (lF * rT) + (lF * rF)) % mod;
+        } 
+        else if (exp[k] == '|') {
+            ans.T = (ans.T + (lT * rF) + (lF * rT) + (lT * rT)) % mod;
+            ans.F = (ans.F + (lF * rF)) % mod;
+        } 
+        else if (exp[k] == '^') {
+            ans.T = (ans.T + (lT * rF) + (lF * rT)) % mod;
+            ans.F = (ans.F + (lT * rT) + (lF * rF)) % mod;
+        }
+    }
+    return ans;
 }
